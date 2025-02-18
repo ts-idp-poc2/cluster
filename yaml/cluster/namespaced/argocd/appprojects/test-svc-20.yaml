@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+    name: test-svc-20
+    namespace: argocd
+spec:
+    description: test-svc-20 app project
+    destinations:
+    - server: https://kubernetes.default.svc
+      namespace: "test-svc-20"
+    sourceRepos:
+    - git@github.com:ts-idp-poc2/test-svc-20-app.git
+    - git@github.com:ts-idp-poc2/test-svc-20-infra.git
+    clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+    namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+    sourceNamespaces:
+    - test-svc-20
